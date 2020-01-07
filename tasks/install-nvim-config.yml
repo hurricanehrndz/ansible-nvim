@@ -42,11 +42,8 @@
   become_user: "{{ nvim_user }}"
 
 - name: Install rust language server
-  shell:
-    cmd:
-      set -o pipefail
-      rustup component add rls rust-analysis rust-src
-    executable: /bin/bash
+  command:
+    cmd: rustup component add rls rust-analysis rust-src
     creates: "{{ rustup_user_home }}/.cargo/bin/rls"
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ rustup_user_home }}/.cargo/bin"
