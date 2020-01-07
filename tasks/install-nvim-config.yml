@@ -7,9 +7,8 @@
 
 - name: Install required pip modules
   pip:
-    name: "{{ item }}"
+    name: "{{ nvim_python_mods }}"
     executable: "{{ pyenv_root }}/versions/{{ nvim_python_ver }}/bin/pip"
-  with_items: "{{ nvim_python_mods }}"
   become: yes
   become_user: "{{ nvim_user }}"
 
