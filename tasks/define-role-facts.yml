@@ -1,0 +1,14 @@
+---
+- name: Get nvim_user from passwd database
+  getent:
+    database: passwd
+    key: "{{ nvim_user }}"
+    split: ":"
+
+- name: Define nvim_user_home as {{ nvim_user }} home directory
+  set_fact:
+    nvim_user_home: "{{ getent_passwd[nvim_user][4] }}"
+
+- name: Define nvim_git_dest
+  set_fact:
+    nvim_git_dest: "{{ nvim_user_home }}/.config/nvim"

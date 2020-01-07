@@ -1,0 +1,7 @@
+---
+# tasks file for ansible-nvim
+- name: Define role facts
+  include_tasks: "define-role-facts.yml"
+
+- name: Install nvim config and prerequistes
+  include_tasks: "install-nvim-config.yml"

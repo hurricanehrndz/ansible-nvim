@@ -1,0 +1,19 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    nvim_user: hurricanehrndz
+  tasks:
+    - name: Update repo cache
+      action: >
+        {{ ansible_pkg_mgr }} update_cache=yes
+
+    - name: Add hurricanehrndz user
+      user:
+        name: "{{ nvim_user }}"
+        create_home: yes
+        shell: /bin/bash
+
+    - name: Run nvim role
+      include_role:
+        name: ansible-nvim

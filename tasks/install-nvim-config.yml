@@ -1,0 +1,79 @@
+---
+- name: Install nvim
+  snap:
+    name: nvim
+    channel: beta
+    classic: true
+
+- name: Install required pip modules
+  pip:
+    name: "{{ item }}"
+    executable: "{{ pyenv_root }}/versions/{{ nvim_python_ver }}/bin/pip"
+  with_items: "{{ nvim_python_mods }}"
+  become: yes
+  become_user: "{{ nvim_user }}"
+
+- name: Set global python version via pyenv
+  template:
+    src: version.j2
+    dest: "{{ pyenv_root }}/version"
+    owner: "{{ nvim_user }}"
+    mode: 0644
+
+- name: Install vim plugin manager
+  shell:
+    cmd: |
+      set -o pipefail
+      curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    creates: "~/.local/share/nvim/site/autoload/plug.vim"
+    executable: /bin/bash
+  environment:
+    HOME: "{{ nvim_user_home }}"
+  become: yes
+  become_user: "{{ nvim_user }}"
+
+- name: Clone nvim config from git repo
+  git:
+    repo: "{{ nvim_git_repo }}"
+    version: master
+    dest: "{{ nvim_git_dest }}"
+  become: yes
+  become_user: "{{ nvim_user }}"
+
+- name: Install rust language server
+  shell:
+    cmd:
+      set -o pipefail
+      rustup component add rls rust-analysis rust-src
+    executable: /bin/bash
+    creates: "{{ rustup_user_home }}/.cargo/bin/rls"
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ rustup_user_home }}/.cargo/bin"
+  when:
+    - cargo_crates is defined
+
+- name: Install neovim plugins
+  shell:
+    cmd: |
+      set -o pipefail
+      pyenv shell {{ nvim_python_ver }}
+      nvim --headless +'PlugInstall --sync' +'PlugUpdate' +qa
+      nvim --headless +'CocUpdateSync' +qa
+    executable: /bin/bash
+  environment:
+    PATH: "{{ pyenv_root }}/bin:{{ fnm_default_nodejs_path }}:/snap/bin:{{ ansible_env.PATH }}"
+  register: nvim_plugin_install
+  changed_when: nvim_plugin_install.stdout_lines|length > 5
+  become: yes
+  become_user: "{{ nvim_user }}"
+
+- name: Install required binaries
+  shell:
+    cmd: |
+      set -o pipefail
+      $HOME/.local/share/fzf/install {% if nvim_fzf_bin_only %}--bin{% else %}--all{% endif %}
+    executable: /bin/bash
+    creates: "{{ nvim_user_home }}/.local/share/fzf/bin/fzf"
+  become: yes
+  become_user: "{{ nvim_user }}"

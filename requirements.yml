@@ -1,0 +1,4 @@
+---
+- src: hurricanehrndz.pyenv
+- src: hurricanehrndz.fastnodemanager
+- src: hurricanehrndz.rustup
