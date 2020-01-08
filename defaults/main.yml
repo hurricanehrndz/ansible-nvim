@@ -1,6 +1,6 @@
 ---
 # defaults file for ansible-nvim
-nvim_user: "{{ ansible_env.USER|default('root') }}"
+nvim_user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 
 nvim_python_ver: 3.8.0
 
