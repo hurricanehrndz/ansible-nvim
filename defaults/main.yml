@@ -23,3 +23,4 @@ nvim_pyenv_root_suffix: ".local/share/pyenv"
 nvim_nodejs_version: "latest-v12.x"
 nvim_npm_global_pkgs:
   - name: neovim
+nvim_cargo_crates: []

@@ -17,4 +17,4 @@ fnm_npm_global_packages: "{{ nvim_npm_global_pkgs }}"
 
 # overrides for rust dependency
 rustup_user: "{{ nvim_user }}"
-rustup_cargo_crates: []
+rustup_cargo_crates: "{{ nvim_cargo_crates|list }}"
