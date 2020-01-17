@@ -16,7 +16,7 @@ nvim_python_mods:
   - docker
   - molecule
 
-nvim_git_repo: git@github.com:hurricanehrndz/nvim.git
+nvim_git_repo: https://github.com/hurricanehrndz/nvim.git
 nvim_fzf_bin_only: false
 nvim_fnm_root_suffix: ".local/share/fnm"
 nvim_pyenv_root_suffix: ".local/share/pyenv"
