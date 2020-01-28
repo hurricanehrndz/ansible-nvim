@@ -5,6 +5,10 @@
     channel: beta
     classic: true
 
+- name: Install system requirements
+  apt:
+    name: python-setuptools
+
 - name: Install required pip modules
   pip:
     name: "{{ nvim_python_mods }}"
