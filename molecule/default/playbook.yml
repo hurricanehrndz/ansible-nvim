@@ -4,9 +4,13 @@
   vars:
     nvim_user: hurricanehrndz
   tasks:
-    - name: Update repo cache
-      action: >
-        {{ ansible_pkg_mgr }} update_cache=yes
+    - name: Adjust id on manjaro
+      lineinfile:
+        dest: /etc/os-release
+        regexp: 'ID=.*'
+        line: 'ID=arch'
+        state: present
+      when: ansible_os_family == "Archlinux"
 
     - name: Add hurricanehrndz user
       user:

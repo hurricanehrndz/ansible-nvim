@@ -1,13 +1,19 @@
 ---
+- name: Install system requirements
+  package:
+    name: "{{ nvim_req_pkgs }}"
+  notify:
+    - restart snapd service
+    - restart apparmor service
+    - restart snapd.apparmor service
+
+- meta: flush_handlers
+
 - name: Install nvim
   snap:
     name: nvim
     channel: beta
     classic: true
-
-- name: Install system requirements
-  apt:
-    name: python-setuptools
 
 - name: Install required pip modules
   pip:

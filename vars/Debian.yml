@@ -1,0 +1,5 @@
+---
+nvim_req_pkgs:
+  - python-setuptools
+  - snapd
+  - fuse

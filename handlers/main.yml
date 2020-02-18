@@ -5,3 +5,16 @@
     name: snapd
     state: restarted
     enabled: true
+
+- name: restart apparmor service
+  systemd:
+    name: apparmor
+    state: restarted
+    enabled: true
+
+- name: restart snapd.apparmor service
+  systemd:
+    name: snapd.apparmor
+    state: restarted
+    enabled: true
+  when: ansible_os_family == "Archlinux"
