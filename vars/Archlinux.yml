@@ -3,4 +3,5 @@ nvim_req_pkgs:
   - python-setuptools
   - snapd
   - apparmor
-  - fuse2
+  - squashfs-tools
+  - squashfuse

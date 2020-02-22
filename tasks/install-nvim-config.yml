@@ -14,6 +14,11 @@
     name: nvim
     channel: beta
     classic: true
+    state: present
+  register: nvim_install
+  until: nvim_install.rc == 0
+  retries: 3
+  delay: 5
 
 - name: Install required pip modules
   pip:
