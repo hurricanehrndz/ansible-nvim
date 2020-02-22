@@ -130,7 +130,7 @@ passed in as parameters) is always nice for users too:
 [Carlos Hernandez aka HurricaneHrndz](https://github.com/hurricanehrndz)
 
 [nvim-config]: https://github.com/hurricanehrndz/nvim
-[role-badge]: https://img.shields.io/ansible/role/d/46765?style=for-the-badge
+[role-badge]: https://img.shields.io/ansible/role/d/46776?style=for-the-badge
 [role-link]: https://galaxy.ansible.com/hurricanehrndz/nvim/
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge
 [mit-link]: https://raw.githubusercontent.com/hurricanehrndz/ansible-nvim/master/LICENSE
