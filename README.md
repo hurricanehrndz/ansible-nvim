@@ -1,4 +1,4 @@
-# hurricanehrndz.nvim-config
+# hurricanehrndz.nvim
 
 [![Build Status][travis-badge]][travis-link]
 [![Galaxy Role][role-badge]][role-link]
