@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Carlos Hernandez
-  role_name: nvim-config
+  role_name: nvim
   description: Ansible role to install nvim configuration
   license: MIT
 
