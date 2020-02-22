@@ -20,4 +20,4 @@
 
     - name: Run nvim role
       include_role:
-        name: ansible-nvim-config
+        name: ansible-nvim
