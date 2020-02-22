@@ -1,7 +1,10 @@
 # hurricanehrndz.nvim-config
 
-Ansible role to install my [Neovim
-configuration](https://github.com/hurricanehrndz/nvim).
+[![Build Status][travis-badge]][travis-link]
+[![Galaxy Role][role-badge]][role-link]
+[![MIT licensed][mit-badge]][mit-link]
+
+Ansible role to install my [Neovim configuration][nvim-config].
 
 ## Requirements
 
@@ -125,3 +128,11 @@ passed in as parameters) is always nice for users too:
 ## Author Information
 
 [Carlos Hernandez aka HurricaneHrndz](https://github.com/hurricanehrndz)
+
+[nvim-config]: https://github.com/hurricanehrndz/nvim
+[role-badge]: https://img.shields.io/ansible/role/d/45889?style=for-the-badge
+[role-link]: https://galaxy.ansible.com/hurricanehrndz/nvim/
+[mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge
+[mit-link]: https://raw.githubusercontent.com/hurricanehrndz/ansible-nvim/master/LICENSE
+[travis-badge]: https://img.shields.io/travis/hurricanehrndz/ansible-nvim/master.svg?style=for-the-badge&logo=travis
+[travis-link]: https://travis-ci.org/hurricanehrndz/ansible-morethandotfiles
