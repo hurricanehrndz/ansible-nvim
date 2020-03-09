@@ -67,7 +67,7 @@
   become: yes
   become_user: "{{ nvim_user }}"
   when:
-    - cargo_crates is defined
+    - nvim_cargo_crates is defined
 
 - name: Install neovim plugins
   shell:
