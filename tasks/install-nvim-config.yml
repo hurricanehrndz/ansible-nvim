@@ -2,6 +2,7 @@
 - name: Install system requirements
   package:
     name: "{{ nvim_req_pkgs }}"
+  become: yes
   notify:
     - restart snapd service
     - restart apparmor service
@@ -63,6 +64,8 @@
     creates: "{{ rustup_user_home }}/.cargo/bin/rls"
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ rustup_user_home }}/.cargo/bin"
+  become: yes
+  become_user: "{{ nvim_user }}"
   when:
     - cargo_crates is defined
 
