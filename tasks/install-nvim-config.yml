@@ -69,6 +69,14 @@
   when:
     - nvim_cargo_crates is defined
 
+- name: Ensure XDG_RUNTIME_DIR exsists
+  file:
+    path: /run/user/{{ nvim_user_uid }}
+    state: directory
+    owner: "{{ nvim_user_uid }}"
+    group: "{{ nvim_user_gid }}"
+    mode: 0700
+
 - name: Install neovim plugins
   shell:
     cmd: |
