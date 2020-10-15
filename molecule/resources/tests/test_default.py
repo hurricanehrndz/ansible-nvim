@@ -31,10 +31,10 @@ def test_bashrc(host, pattern):
 
 
 @pytest.mark.parametrize("command", [
-    "fnm --version",
-    "npm --version",
-    'fzf --version',
-    'rustup --version',
+    "cd $HOME;fnm --version",
+    "cd $HOME;npm --version",
+    "cd $HOME;fzf --version",
+    "cd $HOME;rustup --version",
     "cd $HOME;pyenv --version"
 ])
 def test_npm(host, command):
