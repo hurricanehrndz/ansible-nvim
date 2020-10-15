@@ -7,7 +7,6 @@ matrix:
       env:
         - ANSIBLE='ansible>=2.8'
         - MOLECULE_SCENARIO="default"
-      services: docker
       language: python
       python: "3.8"
       addons:
@@ -27,7 +26,7 @@ matrix:
 install:
   - sudo apt update
   - |
-    [[ -s /var/lib/lxd/unix.socket ]] && sudo lxd.migrate --yes
+    [ -s "/var/lib/lxd/unix.socket" ] && sudo /snap/bin/lxd.migrate --yes
   - sudo /snap/bin/lxd waitready
   - sudo /snap/bin/lxd init --auto
   - sudo chgrp travis /var/snap/lxd/common/lxd/unix.socket
