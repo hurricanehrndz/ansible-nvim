@@ -26,7 +26,9 @@ matrix:
 install:
   - sudo apt update
   - |
-    [ -s "/var/lib/lxd/unix.socket" ] && sudo /snap/bin/lxd.migrate --yes
+    if [ -s "/var/lib/lxd/unix.socket" ]; then
+      sudo /snap/bin/lxd.migrate --yes
+    fi
   - sudo /snap/bin/lxd waitready
   - sudo /snap/bin/lxd init --auto
   - sudo chgrp travis /var/snap/lxd/common/lxd/unix.socket
