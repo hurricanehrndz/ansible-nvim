@@ -35,7 +35,7 @@ def test_bashrc(host, pattern):
     "npm --version",
     'fzf --version',
     'rustup --version',
-    'pyenv --version'
+    "cd $HOME;pyenv --version"
 ])
 def test_npm(host, command):
     user_home = "/home/hurricanehrndz"
