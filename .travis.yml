@@ -7,10 +7,13 @@ matrix:
       env:
         - ANSIBLE='ansible>=2.8'
         - MOLECULE_SCENARIO="default"
-        - MOLECULE_DISTRIBUTION="ubuntu18"
       services: docker
       language: python
       python: "3.8"
+      addons:
+        snaps:
+          - name: lxd
+            channel: stable
 #    - os: linux
 #      env:
 #        - ANSIBLE='ansible>=2.8'
@@ -22,8 +25,13 @@ matrix:
 #      python: "3.8"
 
 install:
+  - sudo usermod -aG lxd $USER
+  - sudo /snap/bin/lxd.migrate -yes
+  - sudo /snap/bin/lxd waitready
+  - sudo /snap/bin/lxd init --auto
+  - newgrp lxd
   - pip3 install -U pip
-  - pip3 install "$ANSIBLE" testinfra molecule docker flake8 ansible-lint yamllint
+  - pip3 install "$ANSIBLE" testinfra molecule molecule-lxd docker flake8 ansible-lint yamllint
 script:
   - python --version
   - molecule --version

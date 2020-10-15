@@ -4,25 +4,20 @@ dependency:
   options:
     role-file: requirements.yml
 driver:
-  name: docker
+  name: lxd
 lint: |
     yamllint .
     ansible-lint
     flake8
 platforms:
-  - name: "ansible-nvim_${MOLECULE_DISTRIBUTION:-ubuntu18}"
-    image: "${MOLECULE_IMAGE:-quay.io/samdoran/ubuntu18-ansible}"
-    command: ${MOLECULE_COMMAND:-""}
-    volumes:
-      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-      - '/dev/fuse:/dev/fuse'
-      - '/dev/loop-control:/dev/loop-control'
-    privileged: true
-    pre_build_image: false
+  - name: "ansible-nvim-${MOLECULE_DISTRIBUTION:-ubuntu-focal}"
+    alias: "${MOLECULE_IMAGE:-ubuntu/focal}"
 provisioner:
   name: ansible
   playbooks:
+    create: ../resources/playbooks/create.yml
     converge: ../resources/playbooks/converge.yml
+    destroy: ../resources/playbooks/destroy.yml
   options:
     vvv: True
 scenario:
@@ -31,4 +26,4 @@ verifier:
   name: testinfra
   directory: ../resources/tests/
   options:
-    verbose: True
+    verbose: true
