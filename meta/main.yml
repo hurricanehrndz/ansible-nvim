@@ -10,7 +10,11 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
+        - focal
         - bionic
+    - name: Fedora
+      versions:
+        - 33
     - name: Archlinux
       versions:
         - all
@@ -27,9 +31,9 @@ dependencies:
     tags:
       - pyenv-dependency
       - dependencies
-  - role: hurricanehrndz.fastnodemanager
+  - role: hurricanehrndz.fnm
     when:
-      - run_fastnodemanager_role|default(true)
+      - run_fnm_role|default(true)
     tags:
       - nodejs-dependency
       - dependencies

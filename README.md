@@ -73,7 +73,7 @@ Defaults to `.local/share/fnm`.
 nvim_pyenv_root_suffix: ".local/share/pyenv"
 ```
 
-Install destination for `pyenv`  within `nvim_user`'s home directory.
+Install destination for `pyenv` within `nvim_user`'s home directory.
 Defaults to `.local/share/pyenv`.
 
 ```yaml
@@ -91,7 +91,7 @@ List of npm global packages to install, default includes `neovim` only.
 ## Dependencies
 
 - hurricanehrndz.pyenv
-- hurricanehrndz.fastnodemanager
+- hurricanehrndz.fnm
 - hurricanehrndz.rustup
 
 ## Example Playbook
@@ -118,7 +118,6 @@ passed in as parameters) is always nice for users too:
     - name: Run nvim role
       include_role:
         name: ansible-nvim
-
 ```
 
 ## License

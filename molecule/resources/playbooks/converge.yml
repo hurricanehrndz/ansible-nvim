@@ -4,14 +4,6 @@
   vars:
     nvim_user: hurricanehrndz
   tasks:
-    - name: Adjust id on manjaro
-      lineinfile:
-        dest: /etc/os-release
-        regexp: 'ID=.*'
-        line: 'ID=arch'
-        state: present
-      when: ansible_os_family == "Archlinux"
-
     - name: Add hurricanehrndz user
       user:
         name: "{{ nvim_user }}"
@@ -20,4 +12,4 @@
 
     - name: Run nvim role
       include_role:
-        name: ansible-nvim
+        name: nvim

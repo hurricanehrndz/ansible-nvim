@@ -20,7 +20,30 @@
         timeout: 600
       with_items: "{{ molecule_yml.platforms }}"
 
-    - name: Install Python in container
+    - name: Install Anisble Prerequisite in container
       delegate_to: "{{ item.name }}"
-      raw: apt-get install -y python
+      raw: apt-get install -y python sudo bash
       with_items: "{{ molecule_yml.platforms }}"
+      when: item.alias is match("ubuntu.*")
+
+    - block:
+      - name: Make dnf faster
+        delegate_to: "{{ item.name }}"
+        raw: |
+          dnf remove -y fedora-repos-modular
+          dnf install -y dnf-plugin-config-manager
+          dnf config-manager --setopt=fastestmirror=True --save
+          dnf makecache
+        with_items: "{{ molecule_yml.platforms }}"
+
+      - name: Install Anisble Prerequisite in container
+        delegate_to: "{{ item.name }}"
+        raw: dnf install -y python3 sudo bash
+        with_items: "{{ molecule_yml.platforms }}"
+      when: item.alias is match("fedora.*")
+
+    - name: Install Anisble Prerequisite in container
+      delegate_to: "{{ item.name }}"
+      raw: pacman -Syyu --noconfirm python3 sudo bash
+      with_items: "{{ molecule_yml.platforms }}"
+      when: item.alias is match("^archlinux.*")
