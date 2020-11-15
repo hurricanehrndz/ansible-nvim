@@ -1,6 +1,6 @@
 # hurricanehrndz.nvim
 
-[![Build Status][travis-badge]][travis-link]
+[![Build Status][action-badge]][action-link]
 [![Galaxy Role][role-badge]][role-link]
 [![MIT licensed][mit-badge]][mit-link]
 
@@ -133,5 +133,5 @@ passed in as parameters) is always nice for users too:
 [role-link]: https://galaxy.ansible.com/hurricanehrndz/nvim/
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge
 [mit-link]: https://raw.githubusercontent.com/hurricanehrndz/ansible-nvim/master/LICENSE
-[travis-badge]: https://img.shields.io/travis/hurricanehrndz/ansible-nvim/master.svg?style=for-the-badge&logo=travis
-[travis-link]: https://travis-ci.org/hurricanehrndz/ansible-morethandotfiles
+[action-badge]: https://img.shields.io/github/workflow/status/hurricanehrndz/ansible-nvim/CI?style=for-the-badge
+[action-link]: https://github.com/hurricanehrndz/ansible-nvim/actions?query=workflow%3ACI
