@@ -8,7 +8,13 @@
 
 # tasks file for ansible-nvim
 - name: Define role facts
-  include_tasks: "define-role-facts.yml"
+  include_tasks: "01-define-role-facts.yml"
+
+- name: Build and install neovim
+  include_tasks: "02-install-neovim.yml"
+
+- name: Install neovim providers
+  include_tasks: "03-install-neovim-helpers.yml"
 
 - name: Install nvim config and prerequistes
-  include_tasks: "install-nvim-config.yml"
+  include_tasks: "04-install-neovim-rc.yml"

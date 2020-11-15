@@ -1,15 +1,16 @@
 ---
 nvim_build_requirements:
   - ninja-build
-  - gettext
   - libtool
-  - libtool-bin
   - autoconf
   - automake
   - cmake
-  - g++
-  - pkg-config
+  - gcc
+  - gcc-c++
+  - make
+  - pkgconfig
   - unzip
+  - patch
 
 nvim_lsp_requirements:
   - clang

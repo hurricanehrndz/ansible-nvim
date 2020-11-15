@@ -1,7 +1,10 @@
 ---
-nvim_req_pkgs:
-  - python-setuptools
-  - snapd
-  - apparmor
-  - squashfs-tools
-  - squashfuse
+nvim_build_requirements:
+  - base-devel
+  - cmake
+  - unzip
+  - ninja
+
+nvim_lsp_requirements:
+  - clang
+  - unzip
