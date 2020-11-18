@@ -19,7 +19,7 @@ def test_hosts_file(host):
 @pytest.mark.parametrize("pattern", [
   "source /home/hurricanehrndz/.local/share/pyenv/pyenvrc",
   "export FNM_DIR=/home/hurricanehrndz/.local/share/fnm",
-  "export PATH=/home/hurricanehrndz/.local/share/fnm",
+  "export PATH=/home/hurricanehrndz/.local/bin",
   "fnm env",
   'source /home/hurricanehrndz/.rustrc',
   'source ~/.fzf.bash'
