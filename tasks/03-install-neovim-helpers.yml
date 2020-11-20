@@ -6,6 +6,19 @@
   become: yes
   become_user: "{{ nvim_user }}"
 
+- name: Rehash pip modules
+  shell:
+    cmd: |
+      eval "$(pyenv init - bash)"
+      pyenv rehash
+    executable: /bin/bash
+    creates: "{{ pyenv_root }}/shims/pyls"
+  environment:
+    PYENV_ROOT: "{{ pyenv_root }}"
+    PATH: "{{ pyenv_root }}/bin:{{ ansible_env.PATH }}"
+  become: yes
+  become_user: "{{ nvim_user }}"
+
 - name: Install system requirements for LSP clients
   package:
     name: "{{ nvim_lsp_requirements }}"
