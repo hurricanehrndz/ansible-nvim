@@ -9,6 +9,7 @@
 - name: Install system requirements for LSP clients
   package:
     name: "{{ nvim_lsp_requirements }}"
+    state: present
   become: true
 
 - name: Install rust-src for rust_analyzer

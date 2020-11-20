@@ -7,6 +7,8 @@ nvim_python_ver: 3.9.0
 nvim_python_mods:
   - pynvim
   - neovim-remote
+  - pyls-mypy
+  - "python-language-server[all]"
 
 nvim_git_repo: https://github.com/hurricanehrndz/nvim.git
 nvim_git_branch: lua
@@ -25,4 +27,8 @@ nvim_cargo_crates: []
 nvim_install_rls: true
 
 # lsp servers to install
-nvim_lsp_servers: []
+nvim_lsp_servers:
+  - yamlls
+  - bashls
+  - tsserver
+  - vimls

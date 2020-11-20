@@ -44,4 +44,57 @@
   become: yes
   become_user: "{{ nvim_user }}"
 
-# TODO: Install LSP Servers via LspInstall
+- name: Define lsp cache dir
+  set_fact:
+    lsp_cache_home: "{{ nvim_user_home }}/.cache/nvim/lspconfig"
+
+- name: Install Language Servers
+  shell:
+    cmd: |
+      set -o pipefail
+      eval "$(pyenv init -)"
+      pyenv shell {{ nvim_python_ver }}
+      nvim --headless +'LspInstall {{ item }}' +qa
+    executable: /bin/bash
+    creates: "{{ lsp_cache_home }}/{{ item }}"
+  environment:
+    PATH: "{{ pyenv_root }}/bin:{{ fnm_default_nodejs_path }}:/usr/loca/bin:{{ ansible_env.PATH }}"
+  with_items: "{{ nvim_lsp_servers }}"
+  become: yes
+  become_user: "{{ nvim_user }}"
+
+- name: Install lua-language-server manually
+  block:
+    - name: Make reuqired directory
+      file:
+        path: "{{ lsp_cache_home }}/sumneko_lua"
+        state: directory
+        mode: '0755'
+        owner: "{{ nvim_user_uid }}"
+        group: "{{ nvim_user_gid }}"
+
+    - name: Define lua-language-server dest
+      set_fact:
+        lua_ls_dest: "{{ lsp_cache_home }}/sumneko_lua/lua-language-server"
+
+    - name: Clone lua-language-server source
+      git:
+        version: master
+        repo: https://github.com/sumneko/lua-language-server.git
+        depth: 1
+        dest: "{{ lua_ls_dest }}"
+
+    - name: Build lua-language-server
+      shell:
+        cmd: |
+          cd 3rd/luamake
+          ninja -f ninja/linux.ninja
+          cd ../..
+          ./3rd/luamake/luamake rebuild
+        executable: /bin/bash
+        chdir: "{{ lua_ls_dest }}"
+        creates: "{{ lua_ls_dest }}/bin/Linux/lua-language-server"
+  environment:
+    HOME: "{{ nvim_user_home }}"
+  become: yes
+  become_user: "{{ nvim_user }}"
