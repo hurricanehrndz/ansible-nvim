@@ -13,4 +13,5 @@ nvim_build_requirements:
 
 nvim_lsp_requirements:
   - clang
+  - clangd
   - unzip

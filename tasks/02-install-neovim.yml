@@ -23,6 +23,7 @@
 - name: Build Neovim
   community.general.make:
     chdir: "{{ neovim_src_dest }}"
+    params: CMAKE_BUILD_TYPE=RelWithDebInfo
   when: not nvim_check.stat.exists
 
 - name: Install Neovim
