@@ -28,9 +28,11 @@
 - name: Install rust-src for rust_analyzer
   command:
     cmd: rustup component add rust-src
-    creates: "{{ nvim_user_home }}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/manifest-rust-src"
+    creates: "{{ nvim_user_home }}/{{ rustup_home_suffix }}/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/manifest-rust-src"
   environment:
-    PATH: "{{ ansible_env.PATH }}:{{ rustup_user_home }}/.cargo/bin"
+    PATH: "{{ ansible_env.PATH }}:{{ rustup_user_home }}/{{ rustup_cargo_home_suffix }}/bin"
+    RUSTUP_HOME: "{{ rustup_user_home }}/{{ rustup_home_suffix }}"
+    CARGO_HOME: "{{ rustup_user_home }}/{{ rustup_cargo_home_suffix }}"
   become: yes
   become_user: "{{ nvim_user }}"
   when:
