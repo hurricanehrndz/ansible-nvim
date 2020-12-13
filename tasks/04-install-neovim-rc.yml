@@ -38,6 +38,7 @@
       nvim --headless +'PlugInstall --sync' +'PlugUpdate' +qa
     executable: /bin/bash
   environment:
+    PYENV_ROOT: "{{ pyenv_root }}"
     PATH: "{{ pyenv_root }}/bin:{{ fnm_default_nodejs_path }}:/usr/loca/bin:{{ ansible_env.PATH }}"
   register: nvim_plugin_install
   changed_when: nvim_plugin_install.stdout_lines|length > 5
@@ -58,6 +59,7 @@
     executable: /bin/bash
     creates: "{{ lsp_cache_home }}/{{ item }}"
   environment:
+    PYENV_ROOT: "{{ pyenv_root }}"
     PATH: "{{ pyenv_root }}/bin:{{ fnm_default_nodejs_path }}:/usr/loca/bin:{{ ansible_env.PATH }}"
   with_items: "{{ nvim_lsp_servers }}"
   become: yes

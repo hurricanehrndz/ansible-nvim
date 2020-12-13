@@ -3,6 +3,8 @@
   pip:
     name: "{{ nvim_python_mods }}"
     executable: "{{ pyenv_root }}/versions/{{ nvim_python_ver }}/bin/pip"
+  environment:
+    PYENV_ROOT: "{{ pyenv_root }}"
   become: yes
   become_user: "{{ nvim_user }}"
 
