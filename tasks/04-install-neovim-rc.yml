@@ -55,6 +55,9 @@
       set -o pipefail
       eval "$(pyenv init -)"
       pyenv shell {{ nvim_python_ver }}
+      {% if fnm_npmrc_suffix is defined %}
+      export NPM_CONFIG_USERCONFIG="{{ nvim_user_home }}/{{ fnm_npmrc_suffix }}"
+      {% endif %}
       nvim --headless +'LspInstall {{ item }}' +qa
     executable: /bin/bash
     creates: "{{ lsp_cache_home }}/{{ item }}"
