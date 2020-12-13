@@ -65,6 +65,7 @@
     PYENV_ROOT: "{{ pyenv_root }}"
     PATH: "{{ pyenv_root }}/bin:{{ fnm_default_nodejs_path }}:/usr/loca/bin:{{ ansible_env.PATH }}"
     XDG_CACHE_HOME: "{{ nvim_user_home }}/.cache"
+    XDG_CONFIG_HOME: "{{ nvim_user_home }}/.cache"
   with_items: "{{ nvim_lsp_servers }}"
   become: yes
   become_user: "{{ nvim_user }}"
